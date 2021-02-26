@@ -1,0 +1,4 @@
+{
+    "mongoURI" : "mongodb+srv://hassaan:W4unFjLl8yMNopkA@cluster0.ykplf.mongodb.net/apparelDb?retryWrites=true&w=majority",
+    "jwtSecret": "ai_secretJWT"
+}
