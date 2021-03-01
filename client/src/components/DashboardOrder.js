@@ -155,9 +155,6 @@ export default () => {
                         Quantity
                      </th>
                      <th className="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
-                        Amount
-                     </th>
-                     <th className="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
                         Actions
                      </th>
                      
@@ -202,9 +199,7 @@ export default () => {
                            <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                               {order.quantity}
                            </td>
-                           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                              {order.amount}
-                           </td>
+                        
                            <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
 
                               <button
@@ -224,10 +219,11 @@ export default () => {
                         </button>
                               <Link
                                  to={`/order/${order._id}`}
-                                 className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                               >
-                                 Track Order
-                        </Link>
+                                 <button className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                                    Track Order
+                                 </button>
+                              </Link>
 
                            </td>
                         </tr>

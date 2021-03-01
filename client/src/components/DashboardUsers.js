@@ -8,7 +8,7 @@ export default (props) => {
 
    const navigate = useNavigate();
 
-   const [me, setMe] = useState([]);
+   const me = localStorage.getItem('user');
    const [users, setUsers] = useState([]);
 
    const [state, dispatch] = useContext(Context);
@@ -42,26 +42,6 @@ export default (props) => {
       
    }
 
-   useEffect( () => {
-      let meh = localStorage.getItem('user');
-      
-      if(meh){
-         axios.post('/auth/user', { userId: meh }, {
-            headers: {
-               'Content-Type': 'application/json'
-            }
-         }).then(res => {
-            setMe(res.data);
-         }).catch((err) => {
-            navigate('/logout');
-         });
-         
-      }else{
-         navigate('/logout');
-      }
-      
-
-   }, []);
 
    useEffect(_ => {
       dispatch({
@@ -116,7 +96,6 @@ export default (props) => {
                </thead>
                <tbody>
                   {users.length > 0 && users.map((user, index) =>
-                     user.id!==me.id &&
                      <tr key={index}>
                         <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
                            {index+1}

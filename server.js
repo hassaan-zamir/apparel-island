@@ -30,7 +30,7 @@ const pusher = new Pusher({
 app.use(express.json());
 
 app.use('/uploads' , express.static('uploads'));
-
+app.use(cors());
 app.use((req,res,next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Headers","*");
