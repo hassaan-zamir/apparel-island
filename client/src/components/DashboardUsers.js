@@ -8,7 +8,6 @@ export default (props) => {
 
    const navigate = useNavigate();
 
-   const me = localStorage.getItem('user');
    const [users, setUsers] = useState([]);
 
    const [state, dispatch] = useContext(Context);
