@@ -43,17 +43,12 @@ router.post('/new'  , (req,res) => {
             content: "Manufacturing Team Content",
             state: "pending",
             nested: [
-                { title: "Fabric", content: "fabric", state: "pending" },
-                { title: "Cutting", content: "cutting", state: "pending" },
-                { title: "Stitching", content: "stitching", state: "pending" },
-                { title: "Printing/Embroidery", content: "printing", state: "pending" },
-                { title: "Finishing/Packing", content: "finishing", state: "pending" }
+                
+                { title: "Sampling", content: "sampling", state: "pending" },
+                { title: "Production", content: "stitching", state: "pending" },
+                { title: "Quality & Finishing", content: "printing", state: "pending" },
+
             ]
-        },
-        {
-            title: "Quality Control",
-            content: "Quality Control Content",
-            state: "pending"
         },
         {
             title: "Shipping",

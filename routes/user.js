@@ -79,7 +79,7 @@ router.get('/sync' , (req,res) => {
     });
 });
 
-router.post('/delete:id' , (req,res) => {
+router.post('/delete/:id' , (req,res) => {
     const id = req.params.id;
     User.findOneAndDelete(id, (err,data) => {
         if(err){

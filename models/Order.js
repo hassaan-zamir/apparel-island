@@ -2,21 +2,20 @@ const mongoose = require('mongoose');
 const mongoosePaginate= require('mongoose-paginate');
  
 const orderSchema = mongoose.Schema({
-    orderCode: String,
-    brandName: String,
+    orderCode: Array,
+    orderStatus: Array,
     customerName: String,
+    brandName: String,
     country: String,
-    product: String,
+    state: String,
+    product: Array,
+    fabric: Array,
+    color: Array,
+    quantity: Array,
     phases: Array,
     orderTimeline: Number,
-    startTime: Number,
-    style: Number,
-    color: Number,
-    state: String,
-    amount: Number,
-    quantity: Number,
+    startTime: Number,    
     user: String,
-
 });
 
 orderSchema.plugin(mongoosePaginate);
