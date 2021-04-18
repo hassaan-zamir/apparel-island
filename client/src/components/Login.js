@@ -15,6 +15,7 @@ export default _ => {
    
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
+   const [err, setErr] = useState('');
    const navigate = useNavigate();
 
    const [state, dispatch] = useContext(Context);
@@ -43,13 +44,24 @@ export default _ => {
 
       axios
          .post('/auth', body, config)
-         .then(res =>
-            dispatch({
-               type: LOGIN_SUCCESS,
-               payload: res.data
-            })
+            .then(res => {
+               if(res.status){
+                  console.log('1',res.data);
+                  dispatch({
+                     type: LOGIN_SUCCESS,
+                     payload: res.data
+                  });
+               }else{
+                  setErr(res.message);
+                  console.log('2',res.message);
+                  dispatch(returnErrors(res.message,res.status,'LOGIN_FAIL'));
+                  dispatch({ type: LOGIN_FAIL });
+               }
+            }
+            
          )
          .catch(err => {
+            setErr(err.response.data.message);
             dispatch(
                returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
             );
@@ -87,9 +99,9 @@ export default _ => {
                </div>
                <form className="mt-8 space-y-6" onSubmit={handleOnSubmit} action="#" method="POST">
                   <input type="hidden" name="remember" value="true" />
-                  {state.error.msg.msg && <div className="mt-2 mb-2">
+                  {state.error.msg.msg ? <div className="mt-2 mb-2">
                      <p style={{color:"red"}}>{state.error.msg.msg}</p>
-                  </div>}
+                  </div> : err!="" && <div className="mt-2 mb-2"><p style={{color:"red"}}>{err}</p></div>}
                   <div className="rounded-md shadow-sm -space-y-px">
                      <div>
                         <label htmlFor="email" className="sr-only">
@@ -160,11 +172,11 @@ export default _ => {
                               className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 20 20"
-                              fill-rule="currentColor"
+                              fillRule="currentColor"
                               aria-hidden="true"
                            >
                               <path
-                                 fill-rule="evenodd"
+                                 fillRule="evenodd"
                                  d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
                                  clipRule="evenodd"
                               />

@@ -28,7 +28,7 @@ export default (props) => {
    const deleteUser = async (user) => {
       
       if(window.confirm('Are you sure you want to delete this user?')){
-         axios.post('/user/delete/'+user, {} , {
+         axios.post('/users/delete/'+user, {} , {
             headers: {
                'Content-Type': 'application/json'
             }

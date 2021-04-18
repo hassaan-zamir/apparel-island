@@ -127,9 +127,7 @@ export default () => {
             <table className="items-center w-full bg-transparent border-collapse">
                <thead>
                   <tr>
-                     <th className="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
-                        #
-                </th>
+                     
                      <th className="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
                         Brand
                 </th>
@@ -142,18 +140,12 @@ export default () => {
                      <th className="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
                         State
                 </th>
-                     <th className="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
-                        Style
+                     <th colSpan="6" className="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
+                        Products
                 </th>
-                     <th className="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
-                        Color
-                </th>
-                     <th className="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
-                        Product
-                </th>
-                     <th className="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
-                        Quantity
-                     </th>
+                     
+                    
+                     
                      <th className="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
                         Actions
                      </th>
@@ -164,70 +156,105 @@ export default () => {
                   {orders === -1 ?
                      <tr>
                         <th
-                           className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left" colspan="9"
+                           className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left" colSpan="9"
                         >
                            Loading....
                         </th>
                      </tr>
-                     : orders.length > 0 && orders.map((order, index) =>
-                        <tr key={index} 
-                        className={((new Date()).getTime()) >= ( (order.orderTimeline*1000) + order.startTime)  && 'bg-red-400'}>
-                           <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
-                              {order.orderCode}
-                           </th>
-                           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                              {order.brandName}
-                           </td>
-                           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                              {order.customerName}
-                           </td>
-                           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                              {order.country}
-                           </td>
-                           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                              {order.state}
-                           </td>
-                           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                              {order.style}
-                           </td>
-                           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                              {order.color}
-                           </td>
-                           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                              {order.product}
-                           </td>
-                           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
-                              {order.quantity}
-                           </td>
-                        
-                           <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                     : orders.length > 0 && orders.map((order, index) =>                          
+                        <> 
+                           <tr>
+                              <td rowSpan={order.orderCode.length +1} className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                 {order.brandName}
+                              </td>
+                              <td rowSpan={order.orderCode.length +1} className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                 {order.customerName}
+                              </td>
+                              <td rowSpan={order.orderCode.length +1} className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                 {order.country}
+                              </td>
+                              <td rowSpan={order.orderCode.length +1} className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                 {order.state}
+                              </td>
+                              <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
+                                 Code
+                              </th>
+                              <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
+                                 Status
+                              </th>
+                              <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
+                                 Product
+                              </th>
+                              <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
+                                 Fabric
+                              </th>
+                              <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
+                                 Color
+                              </th>
+                              <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
+                                 Qty
+                              </th>
+                              <td rowSpan={order.orderCode.length +1} className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
 
-                              <button
-                                 className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                 type="button"
-                                 onClick={(e) => { e.stopPropagation(); editOrder(order._id) }}
-                              >
-                                 Edit
-                        </button>
-
-                              <button
-                                 className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                 type="button"
-                                 onClick={(e) => { e.stopPropagation(); deleteOrder(order._id) }}
-                              >
-                                 Delete
-                        </button>
-                              <Link
-                                 to={`/order/${order._id}`}
-                              >
-                                 <button className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-                                    Track Order
+                                 <button
+                                    className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                    type="button"
+                                    onClick={(e) => { e.stopPropagation(); editOrder(order._id) }}
+                                 >
+                                    Edit
                                  </button>
-                              </Link>
 
-                           </td>
-                        </tr>
-                     )}
+                                 <button
+                                    className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                    type="button"
+                                    onClick={(e) => { e.stopPropagation(); deleteOrder(order._id) }}
+                                 >
+                                    Delete
+                                 </button>
+                                 <Link
+                                    to={`/order/${order._id}`}
+                                 >
+                                    <button className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                                       Track Order
+                                    </button>
+                                 </Link>
+
+                              </td>
+                              
+                           </tr>
+                           
+                           {[...Array(order.orderCode.length)].map((_,i) => 
+                              <tr 
+                              className={((new Date()).getTime()) >= ( (order.orderTimeline*1000) + order.startTime)  &&  'bg-red-400'}>
+                                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
+                                    {order.orderCode[i]}
+                                 </td>
+                                 
+                                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                    {order.orderStatus[i]}
+                                 </td>
+                                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                    {order.product[i]}
+                                 </td>
+                                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                    {order.fabric[i]}
+                                 </td>
+                                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                    {order.color[i]}
+                                 </td>
+                                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
+                                    {order.quantity[i]}
+                                 </td>
+                                 
+                              
+                                 
+                              </tr>
+                           )}
+                        </>
+                     
+                        
+                        
+                  )}
                </tbody>
             </table>
 
@@ -259,7 +286,7 @@ export default () => {
                               <a onClick={(e) => { e.preventDefault(); setPage(page - 1) }} className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
                                  <span className="sr-only">Previous</span>
                                  <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
                                  </svg>
                               </a>
                            }
@@ -280,7 +307,7 @@ export default () => {
                               <a onClick={e => { e.preventDefault(); setPage(page + 1) }} className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
                                  <span className="sr-only">Next</span>
                                  <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                                  </svg>
                               </a>
                            }
