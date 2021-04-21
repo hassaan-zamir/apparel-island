@@ -45,7 +45,8 @@ const connection_uri = config.get('mongoURI');
 mongoose.connect(connection_uri,{
     useCreateIndex: true,
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false,
 });
 
 const db = mongoose.connection;

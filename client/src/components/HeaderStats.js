@@ -4,7 +4,13 @@ import React from "react";
 
 import CardStats from "./Cards/CardStats.js";
 
-export default function HeaderStats() {
+export default function HeaderStats({summary}) {
+   
+   const getPercent = (no) => {
+      const total = summary.open+summary.production+summary.sampling+summary.quality;
+      return ((no/total)*100).toFixed(2);
+   }
+
    return (
       <div>
          {/* Header */}
@@ -15,48 +21,44 @@ export default function HeaderStats() {
                   <div className="flex flex-wrap">
                      <div className="w-full px-4 lg:w-6/12 xl:w-3/12">
                         <CardStats
-                           statSubtitle="TRAFFIC"
-                           statTitle="350,897"
-                           statArrow="up"
-                           statPercent="3.48"
+                           statSubtitle="Open Orders"
+                           statTitle={summary.open}
+                           statPercent={getPercent(summary.open)}
                            statPercentColor="text-green-500"
-                           statDescripiron="Since last month"
+                           statDescripiron=""
                            statIconName="far fa-chart-bar"
                            statIconColor="bg-red-500"
                         />
                      </div>
                      <div className="w-full px-4 lg:w-6/12 xl:w-3/12">
                         <CardStats
-                           statSubtitle="NEW USERS"
-                           statTitle="2,356"
-                           statArrow="down"
-                           statPercent="3.48"
-                           statPercentColor="text-red-500"
-                           statDescripiron="Since last week"
+                           statSubtitle="In Production"
+                           statTitle={summary.production}
+                           statPercent={getPercent(summary.production)}
+                           statPercentColor="text-green-500"
+                           statDescripiron=""
                            statIconName="fas fa-chart-pie"
                            statIconColor="bg-orange-500"
                         />
                      </div>
                      <div className="w-full px-4 lg:w-6/12 xl:w-3/12">
                         <CardStats
-                           statSubtitle="SALES"
-                           statTitle="924"
-                           statArrow="down"
-                           statPercent="1.10"
+                           statSubtitle="In Sampling"
+                           statTitle={summary.sampling}
+                           statPercent={getPercent(summary.sampling)}
                            statPercentColor="text-orange-500"
-                           statDescripiron="Since yesterday"
+                           statDescripiron=""
                            statIconName="fas fa-users"
                            statIconColor="bg-pink-500"
                         />
                      </div>
                      <div className="w-full px-4 lg:w-6/12 xl:w-3/12">
                         <CardStats
-                           statSubtitle="PERFORMANCE"
-                           statTitle="49,65%"
-                           statArrow="up"
-                           statPercent="12"
+                           statSubtitle="In Quality"
+                           statTitle={summary.quality}
+                           statPercent={getPercent(summary.quality)}
                            statPercentColor="text-green-500"
-                           statDescripiron="Since last month"
+                           statDescripiron=""
                            statIconName="fas fa-percent"
                            statIconColor="bg-blue-500"
                         />

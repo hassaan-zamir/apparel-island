@@ -1,5 +1,6 @@
 import React, { createContext, useReducer } from "react";
 
+
 import { 
    GET_ERRORS,
    CLEAR_ERRORS,
@@ -9,8 +10,11 @@ import {
    LOGOUT_SUCCESS,
 } from '../actions/types';
 
-const Reducer = (state, action) => {
+
+
+const Reducer =  (state, action) => {
    switch (action.type) {
+
       case "SET_TITLE":
          return {
             ...state,

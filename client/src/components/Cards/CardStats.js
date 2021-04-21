@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 export default function CardStats({
   statSubtitle,
-  statTitle,
   statArrow,
   statPercent,
   statPercentColor,
@@ -20,9 +19,6 @@ export default function CardStats({
               <h5 className="text-gray-500 uppercase font-bold text-xs">
                 {statSubtitle}
               </h5>
-              <span className="font-semibold text-xl text-gray-800">
-                {statTitle}
-              </span>
             </div>
             <div className="relative w-auto pl-4 flex-initial">
               <div

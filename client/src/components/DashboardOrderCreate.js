@@ -23,7 +23,7 @@ const DashboardOrderCreate = () => {
    const [ orderStatus, setOrderStatus] = useState([1]);
    const [ product,setProduct ] = useState(['']);
    const [ fabric,setFabric ] = useState(['']);
-   const [ color , setColor ] = useState([1]);
+   const [ color , setColor ] = useState(['']);
    const [ quantity,setQuantity ] = useState([1]); 
    
 
@@ -116,7 +116,7 @@ const DashboardOrderCreate = () => {
    const addRow = () => {
       if(rows<20){
          let newCode = [...orderCode]; newCode[rows] = ""; setOrderCode([...newCode]);
-         let newStatus = [...orderStatus]; newStatus[rows] = ""; setOrderStatus([...orderStatus]);
+         let newStatus = [...orderStatus]; newStatus[rows] = 1; setOrderStatus([...orderStatus]);
          let newProd = [...product]; newProd[rows] = ""; setProduct([...newProd]);
          let newFab = [...fabric]; newFab[rows] = ""; setFabric([...newFab]);
          let newQuan = [...quantity]; newQuan[rows] = ""; setQuantity([...newQuan]);
@@ -153,6 +153,7 @@ const DashboardOrderCreate = () => {
                   setQuantity(response.data.quantity);
                   setColor(response.data.color);  
                   setOrderTimeline(response.data.orderTimeline);
+                  setRows(response.data.orderCode.length);
                }else{
                   alert('Unexpected Data Occured while fetching department details');
                }
@@ -164,7 +165,7 @@ const DashboardOrderCreate = () => {
 
    return (
       <div className="mt-10 sm:mt-0">
-         <div className="sm: px-10 md:px-20 lg:px-40 xl:px-64 py-10">
+         <div className="sm: px-2 md:px-4 lg:px-10 xl:px-20 py-10">
             <div className="mt-5 md:mt-0 md:col-span-2">
                <form onSubmit={onSubmit} method="POST">
                   <div className="shadow overflow-hidden w-full sm:rounded-md">
@@ -282,26 +283,8 @@ const DashboardOrderCreate = () => {
                                  />
                               </div>
                            
-                              {/* Order Status */}
-                              <div className="col-span-2">
-                                 <label
-                                    htmlFor="Order Status"
-                                    className="block text-sm font-medium text-gray-700"
-                                 >
-                                    Order Status
-                                 </label>
-                                 <select name="orderStatus" required
-                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                    onChange= {(e) => { let newStatus = [...orderStatus]; newStatus[i] = e.target.value; setOrderStatus([...newStatus]) }}>
-
-                                       <option value="1" selected={orderStatus[i]===1}>In Production</option>
-                                       <option value="2" selected={orderStatus[i]===2}>Sample Approval</option>
-                                       <option value="3" selected={orderStatus[i]===3}>Sample Awaiting</option>
-                                       <option value="4" selected={orderStatus[i]===4}>Open</option>
-                                       <option value="5" selected={orderStatus[i]===5}>Sample Shipped For Approval</option>
-                                 </select>
-                              </div>
-
+                              
+                              {/* Product */}
                               <div className="col-span-2">
                                  <label
                                     htmlFor="product"
@@ -318,6 +301,7 @@ const DashboardOrderCreate = () => {
                                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                  />
                               </div>
+                              {/* Fabric */}
                               <div className="col-span-2">
                                  <label
                                     htmlFor="fabric"
@@ -334,6 +318,7 @@ const DashboardOrderCreate = () => {
                                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                  />
                               </div>
+                              {/* Color */}
                               <div className="col-span-2">
                                  <label
                                     htmlFor="color"
@@ -341,18 +326,18 @@ const DashboardOrderCreate = () => {
                                  >
                                     Color
                                  </label>
-                                 <select name="color" required
+                                 <input
+                                    type="text"
+                                    name="color"
+                                    id="color"
+                                    value={color[i]}
+                                    onChange={(e) => { let newCol = [...color]; newCol[i] = e.target.value; setColor([...newCol]) }} required
+                                    autoComplete="color"
                                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                    onChange= {(e) => { let newCol = [...color]; newCol[i] = e.target.value; setColor([...newCol]) }}>
-
-                                       <option value="1" selected={color[i]===1}>1</option>
-                                       <option value="2" selected={color[i]===2}>2</option>
-                                       <option value="3" selected={color[i]===3}>3</option>
-                                       <option value="4" selected={color[i]===4}>4</option>
-                                       <option value="5" selected={color[i]===5}>5</option>
-                                 </select>
-                              
+                                 />
+                                
                               </div>
+                              {/* Quantity */}
                               <div className="col-span-2">
                                  <label
                                     htmlFor="Quantity"
@@ -371,7 +356,24 @@ const DashboardOrderCreate = () => {
                                  />
                                  
                               </div>
-                              
+                              {/* Order Status */}
+                              <div className="col-span-2">
+                                 <label
+                                    htmlFor="Order Status"
+                                    className="block text-sm font-medium text-gray-700"
+                                 >
+                                    Order Status
+                                 </label>
+                                 <select name="orderStatus" required
+                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                    onChange= {(e) => { let newStatus = [...orderStatus]; newStatus[i] = e.target.value; setOrderStatus([...newStatus]) }}>
+                                       <option value="1" selected={orderStatus[i]===1}>Open</option>
+                                       <option value="2" selected={orderStatus[i]===2}>In Production</option>
+                                       <option value="3" selected={orderStatus[i]===3}>Sample Approval</option>
+                                       <option value="4" selected={orderStatus[i]===4}>Sample Awaiting</option>
+                                       <option value="5" selected={orderStatus[i]===5}>Sample Shipped For Approval</option>
+                                 </select>
+                              </div>
                              
                               </>
                            ))

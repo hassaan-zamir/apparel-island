@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from "react";
-
+import React, { useState, useContext, useEffect } from "react";
+import axios from "../actions/axios";
 import { Context } from "./Store";
 import {
   LOGOUT_SUCCESS,
@@ -21,7 +21,12 @@ export default () => {
 
    const navigate = useNavigate();
    const [state, dispatch] = useContext(Context);
-
+   const [summary, setSummary] = useState({
+      open: 0,
+      sampling: 0,
+      production: 0,
+      quality: 0
+   });
 
    //on authenticate state change
    useEffect(() => {
@@ -43,15 +48,32 @@ export default () => {
          type: "SET_TITLE",
          payload: `Dashboard`,
       });
+
+
+   }, []);
+
+   useEffect(() => {
+      
+        
+      axios.get('/order/summary/').then(
+         (response) => {
+            if(response.data){
+               setSummary(response.data);
+            }else{
+               alert('Unexpected Data Occured while fetching summary details');
+            }
+         }
+      );
       
    }, []);
+
 
 
 
    return (
       <div className="relative h-full overflow-y-auto bg-gray-200 md:ml-64">
          <Sidebar logout={logout}/>
-         <HeaderStats />
+         <HeaderStats summary={summary}/>
          <Routes>
             <Route path="/" element={<DashboardMain />} />
             

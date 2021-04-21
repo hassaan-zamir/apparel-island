@@ -78,6 +78,32 @@ router.get('/sync/:page' , (req,res) => {
     });
 });
 
+router.get('/summary' , async (req,res) => {
+    let summary = {
+        open: 0,
+        sampling: 0,
+        production: 0,
+        quality: 0
+    }
+    await Order.find((err,data) => {
+        data.forEach(row => {
+            row.orderStatus.forEach(st => {
+                if(st === 1){
+                    summary.open++;
+                }else if(st === 2){
+                    summary.production++;
+                }else if(st === 3 || st === 4){
+                    summary.sampling++;
+                }else{
+                    summary.quality++;
+                }
+            })
+        })
+    });
+
+    res.status(200).send(summary);
+});
+
 router.get('/all' , (req,res) => {
     Order.find((err,data) => {
         if(err){
@@ -87,6 +113,7 @@ router.get('/all' , (req,res) => {
         }
     });
 });
+
 
 router.post('/delete/:id' , (req,res) => {
     const id = req.params.id;
@@ -102,6 +129,7 @@ router.post('/delete/:id' , (req,res) => {
 
 router.post('/update/:id' , (req,res) => {
     const id = req.params.id;
+    console.log('id',id);
     Order.findOneAndUpdate(id , req.body, (err,data) => {
       if(err){
         res.status(500).send(err);

@@ -52,7 +52,7 @@ export default () => {
       setOrders(-1);
       axios.get('/order/sync/' + page).then(
          (response) => {
-
+            console.log('orders', response.data.docs);
             setOrders(response.data.docs);
             setPages(Math.ceil(response.data.total / itemsPerPage));
             setTotalOrders(response.data.total);
