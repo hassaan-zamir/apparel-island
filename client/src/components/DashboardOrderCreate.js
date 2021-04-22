@@ -249,17 +249,7 @@ const DashboardOrderCreate = () => {
                               />
                            </div>
 
-                           <div className="col-span-12">
-                              <button 
-                              type="button"
-                              className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
-                              onClick={ () => addRow() } >Add +</button>
-                              {rows>1 && <button type="button"
-                              onClick={ () => removeRow(rows-1) }
-                              className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 mt-2 ml-5"
-                              >X</button>}
-                           </div>
-            
+                           
                         
                            { [...Array(rows)].map((_,i) => (    
                               <>
@@ -379,7 +369,18 @@ const DashboardOrderCreate = () => {
                            ))
                               
                            }  
-                        
+
+                           <div className="col-span-12">
+                              <button 
+                              type="button"
+                              className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+                              onClick={ () => addRow() } >Add +</button>
+                              {rows>1 && <button type="button"
+                              onClick={ () => removeRow(rows-1) }
+                              className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 mt-2 ml-5"
+                              >X</button>}
+                           </div>
+            
                            {/* Order Timeline */}
                            <div className="col-span-12">
                               <label

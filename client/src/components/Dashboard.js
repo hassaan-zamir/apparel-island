@@ -73,7 +73,9 @@ export default () => {
    return (
       <div className="relative h-full overflow-y-auto bg-gray-200 md:ml-64">
          <Sidebar logout={logout}/>
+         {state.title!='Dashboard / Orders' &&
          <HeaderStats summary={summary}/>
+         }
          <Routes>
             <Route path="/" element={<DashboardMain />} />
             
